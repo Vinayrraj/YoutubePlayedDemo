@@ -4,6 +4,7 @@ import android.app.Activity;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -38,8 +39,8 @@ public class FragmentVideo extends Fragment {
         @Override
         public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
             Video.VideoItem feed = (Video.VideoItem) parent.getAdapter().getItem(position);
-            Intent intent = YouTubeIntents.createPlayVideoIntentWithOptions(activity, feed.getId().getVideoId(), true,
-                    false);
+            Intent intent = new Intent(Intent.ACTION_VIEW, Uri.parse("vnd.youtube://" + feed.getId().getVideoId()));
+            //intent = YouTubeIntents.createPlayVideoIntentWithOptions(activity, feed.getId().getVideoId(), true, false);
             startActivity(intent);
         }
     };
